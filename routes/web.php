@@ -16,6 +16,6 @@ use App\Http\Controllers\TestController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware('age');
 
 Route::get('/test', [TestController::class, 'index']);

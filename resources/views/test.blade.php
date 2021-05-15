@@ -1,2 +1,2 @@
 <?php
- echo "This is test view page";
+ echo "You are not authorized to view this page";
