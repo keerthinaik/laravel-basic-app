@@ -18,4 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 })->middleware('age');
 
-Route::get('/test', [TestController::class, 'index']);
+Route::get('/test', [TestController::class, 'index'])->name('test_route_name');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
