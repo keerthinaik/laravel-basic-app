@@ -35,4 +35,25 @@ class CategoryController extends Controller
         $category->save();
         return Redirect()->back()->with('success', 'Category inserted successfully');
     }
+
+    public function edit_category($id)
+    {
+        $category = Category::find($id);
+        return view('admin.category.edit', compact('category'));
+    }
+
+    public function update_category(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'name' => 'required|unique:categories|max:20',
+        ], [
+            'name.required' => 'Please enter the category name',
+            'name.unique' => 'The Category already exists',
+            'name.max' => 'Maximum 20 characters allowed'
+        ]);
+        $category = Category::find($id)->update([
+            'name' => $request->name,
+        ]);
+        return Redirect()->route('all.category')->with('success', 'Category updated successfully');
+    }
 }

@@ -13,7 +13,7 @@
                     <thead>
                     <tr>
                         <th scope="col">Sl #.</th>
-                        <th scope="col">NAME</th>
+                        <th scope="col">Name</th>
                         <th scope="col">E-mail</th>
                         <th scope="col">Created at</th>
                     </tr>

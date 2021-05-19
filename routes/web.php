@@ -25,6 +25,8 @@ Route::get('/test', [TestController::class, 'index'])->name('test_route_name');
 // Category controller
 Route::get('category/all', [CategoryController::class, 'all_category'])->name('all.category');
 Route::post('category/add', [CategoryController::class, 'add_category'])->name('add.category');
+Route::get('category/edit/{id}', [CategoryController::class, 'edit_category'])->name('edit.category');
+Route::post('category/update/{id}', [CategoryController::class, 'update_category'])->name('update.category');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $users = User::all();

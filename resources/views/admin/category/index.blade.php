@@ -1,10 +1,4 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            All Categories
-        </h2>
-    </x-slot>
-
     <div class="py-12">
         <div class="container">
             <div class="row">
@@ -24,19 +18,24 @@
                             <thead>
                             <tr>
                                 <th scope="col">Sl #.</th>
-                                <th scope="col">NAME</th>
+                                <th scope="col">Name</th>
                                 <th scope="col">User</th>
                                 <th scope="col">Created at</th>
+                                <th scope="col">Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @php($i = 1)
                             @foreach($categories as $category)
                                 <tr>
-                                    <th scope="row">{{ $i++ }}</th>
+                                    <th scope="row">{{ $categories->firstItem() + $loop->index }}</th>
                                     <td>{{ $category->name }}</td>
-                                    <td>{{ $category->user_id }}</td>
+                                    <td>{{ $category->user->name}}</td>
                                     <td>{{ $category->created_at->diffForHumans() }}</td>
+                                    <td>
+                                        <a href="{{ url('category/edit/'.$category->id) }}"
+                                           class="btn btn-info">Edit</a>
+                                        <a href="" class="btn btn-danger">Delete</a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>

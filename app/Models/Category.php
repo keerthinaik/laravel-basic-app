@@ -13,4 +13,13 @@ class Category extends Model
         'user_id',
         'name',
     ];
+
+    /**
+     * returns the user of category
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }
