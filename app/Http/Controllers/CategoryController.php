@@ -12,11 +12,12 @@ class CategoryController extends Controller
     {
         // All categories with latest first
         $categories = Category::latest()->paginate(3);
+        $trash_categories = Category::onlyTrashed()->paginate(2);
 
         // All categories
         // $categories = Category::all();
         // $categories = Category::paginate(2);
-        return view('admin.category.index', compact('categories'));
+        return view('admin.category.index', compact('categories', 'trash_categories'));
     }
 
     public function add_category(Request $request)
@@ -55,5 +56,23 @@ class CategoryController extends Controller
             'name' => $request->name,
         ]);
         return Redirect()->route('all.category')->with('success', 'Category updated successfully');
+    }
+
+    public function softdelete_category($id)
+    {
+        $category = Category::find($id)->delete();
+        return Redirect()->back()->with('success', 'Category Soft Delete Successfully');
+    }
+
+    public function restore_category($id)
+    {
+        $category = Category::withTrashed()->find($id)->restore();
+        return Redirect()->back()->with('success', 'Category Restored Successfully');
+    }
+
+    public function delete_category($id)
+    {
+        $category = Category::onlyTrashed()->find($id)->forceDelete();
+        return Redirect()->back()->with('success', 'Category Deleted Successfully');
     }
 }
