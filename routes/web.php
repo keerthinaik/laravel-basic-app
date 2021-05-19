@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TestController;
 use App\Models\User;
@@ -20,9 +21,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Test Route
 Route::get('/test', [TestController::class, 'index'])->name('test_route_name');
 
-// Category controller
+// Dashboard Route
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    $users = User::all();
+    return view('dashboard', compact('users'));
+})->name('dashboard');
+
+// Category routes
 Route::get('category/all', [CategoryController::class, 'all_category'])->name('all.category');
 Route::post('category/add', [CategoryController::class, 'add_category'])->name('add.category');
 Route::get('category/edit/{id}', [CategoryController::class, 'edit_category'])->name('edit.category');
@@ -32,7 +40,9 @@ Route::get('category/softdelete/{id}', [CategoryController::class, 'softdelete_c
 Route::get('category/restore/{id}', [CategoryController::class, 'restore_category'])->name('restore.category');
 Route::get('category/delete/{id}', [CategoryController::class, 'delete_category'])->name('delete.category');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    $users = User::all();
-    return view('dashboard', compact('users'));
-})->name('dashboard');
+// Brand routes
+Route::get('brands/all', [BrandController::class, 'all_brand'])->name('all.brand');
+Route::post('brand/add', [BrandController::class, 'add_brand'])->name('add.brand');
+Route::get('brand/edit/{id}', [BrandController::class, 'edit_brand'])->name('edit.brand');
+Route::post('brand/update/{id}', [BrandController::class, 'update_brand'])->name('update.brand');
+Route::get('brand/delete/{id}', [BrandController::class, 'delete_brand'])->name('delete.brand');
