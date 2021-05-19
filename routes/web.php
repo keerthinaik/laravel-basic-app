@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TestController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,10 @@ Route::get('/', function () {
 });
 
 Route::get('/test', [TestController::class, 'index'])->name('test_route_name');
+
+// Category controller
+Route::get('category/all', [CategoryController::class, 'all_category'])->name('all.category');
+Route::post('category/add', [CategoryController::class, 'add_category'])->name('add.category');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $users = User::all();
