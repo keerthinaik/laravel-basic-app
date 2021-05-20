@@ -63,4 +63,5 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Important notes
 
-If we need to use authentication need to install jetstream by using command <code>composer require laravel/jetstream</code>.
+1. If we need to use authentication need to install jetstream by using command <code>composer require laravel/jetstream</code>.
+2. For Adding image intervention package follow this link [Image Intervention Laravel](http://image.intervention.io/getting_started/installation).
