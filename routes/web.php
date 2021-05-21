@@ -3,6 +3,7 @@
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TestController;
+use App\Models\Brand;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +18,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    $brands = Brand::all();
+    return view('home', compact('brands'));
+})->name('home');
 
 // Test Route
 Route::get('/test', [TestController::class, 'index'])->name('test_route_name');

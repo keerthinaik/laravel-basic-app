@@ -27,6 +27,7 @@
 
     <!-- FAVICON -->
     <link href="{{ asset('backend/assets/img/favicon.png') }}" rel="shortcut icon"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
     <!--
       HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
@@ -234,5 +235,27 @@
 <script src="{{ asset('backend/assets/js/date-range.js') }}"></script>
 <script src="{{ asset('backend/assets/js/map.js') }}"></script>
 <script src="{{ asset('backend/assets/js/custom.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script>
+        @if(\Illuminate\Support\Facades\Session::has('message'))
+    var type = "{{ \Illuminate\Support\Facades\Session::get('alert-type', 'info') }}"
+    switch (type) {
+        case 'info':
+            toastr.info("{{ \Illuminate\Support\Facades\Session::get('message') }}");
+            break;
+        case 'success':
+            toastr.info("{{ \Illuminate\Support\Facades\Session::get('message') }}");
+            break;
+        case 'warning':
+            toastr.warning("{{ \Illuminate\Support\Facades\Session::get('message') }}");
+            break;
+        case 'error':
+            toastr.error("{{ \Illuminate\Support\Facades\Session::get('message') }}");
+            break;
+    }
+    @endif
+</script>
+
 </body>
 </html>

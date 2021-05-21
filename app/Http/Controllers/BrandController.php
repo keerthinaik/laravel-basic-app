@@ -17,7 +17,7 @@ class BrandController extends Controller
 
     public function all_brand()
     {
-        $brands = Brand::latest()->paginate(3);
+        $brands = Brand::latest()->paginate(8);
         return view('admin.brand.index', compact('brands'));
     }
 
@@ -49,7 +49,11 @@ class BrandController extends Controller
         $brand->image = $upload_dir . $image_name;
         $brand->save();
 
-        return Redirect()->back()->with('success', 'Brand inserted successfully');
+        $notification = array(
+            'message' => 'Brand inserted successfully',
+            'alert-type' => 'success'
+        );
+        return Redirect()->back()->with($notification);
     }
 
     public function edit_brand($id)
