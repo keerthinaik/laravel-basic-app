@@ -41,8 +41,12 @@ Route::get('category/restore/{id}', [CategoryController::class, 'restore_categor
 Route::get('category/delete/{id}', [CategoryController::class, 'delete_category'])->name('delete.category');
 
 // Brand routes
-Route::get('brands/all', [BrandController::class, 'all_brand'])->name('all.brand');
+Route::get('brand/all', [BrandController::class, 'all_brand'])->name('all.brand');
 Route::post('brand/add', [BrandController::class, 'add_brand'])->name('add.brand');
 Route::get('brand/edit/{id}', [BrandController::class, 'edit_brand'])->name('edit.brand');
 Route::post('brand/update/{id}', [BrandController::class, 'update_brand'])->name('update.brand');
 Route::get('brand/delete/{id}', [BrandController::class, 'delete_brand'])->name('delete.brand');
+
+// Multipic routes
+Route::get('multi/pic', [BrandController::class, 'multi_pic'])->name('multi.pic');
+Route::post('multi/pic/add', [BrandController::class, 'add_multi_pic'])->name('add.images');
