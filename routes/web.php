@@ -3,7 +3,6 @@
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TestController;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,8 +25,7 @@ Route::get('/test', [TestController::class, 'index'])->name('test_route_name');
 
 // Dashboard Route
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    $users = User::all();
-    return view('dashboard', compact('users'));
+    return view('admin.index');
 })->name('dashboard');
 
 // Category routes
@@ -55,3 +53,5 @@ Route::post('multi/pic/add', [BrandController::class, 'add_multi_pic'])->name('a
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
+
+Route::get('user/logout', [TestController::class, 'logout'])->name('user.logout');
