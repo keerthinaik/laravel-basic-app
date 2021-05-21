@@ -10,6 +10,11 @@ use Intervention\Image\Facades\Image;
 
 class BrandController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function all_brand()
     {
         $brands = Brand::latest()->paginate(3);
