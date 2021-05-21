@@ -50,3 +50,8 @@ Route::get('brand/delete/{id}', [BrandController::class, 'delete_brand'])->name(
 // Multipic routes
 Route::get('multi/pic', [BrandController::class, 'multi_pic'])->name('multi.pic');
 Route::post('multi/pic/add', [BrandController::class, 'add_multi_pic'])->name('add.images');
+
+// email verification route
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
